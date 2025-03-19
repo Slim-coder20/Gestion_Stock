@@ -1,22 +1,39 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello LoginController!
+{% block title %}Connexion
 {% endblock %}
 
 {% block body %}
-	<h1>Connexion</h1>
-	{% if error %}
-		<div class="alert alert-danger">
+<div class="container mt-5">
+	<div class="row justify-content-center">
+		<div class="col-md-6">
+			<h1 class="text-center mb-4">Connexion</h1>
 
-			{{ error.messageKey|trans(error.messageData, 'security') }}
-		</div>
+			{% if error %}
+				<div class="alert alert-danger">
+					{{ error.messageKey|trans(error.messageData, 'security') }}
+				</div>
+			{% endif %}
 
-	{% endif %}
+			<form method="post" action="{{ path('app_login') }}" class="bg-light p-4 rounded shadow-sm">
+				{{ form_start(form) }}
 
-	<form method="post" action="{{ path('app_login') }}">
-		{{ form_start(form) }}
-		{{ form_row(form.username) }}
-		{{ form_row(form.password) }}
-		{{ form_end(form) }}
-	</form>
+				<div class="mb-3">
+					{{ form_label(form.username, 'Nom d\'utilisateur', { 'label_attr': { 'class': 'form-label' } }) }}
+                        {{ form_widget(form.username, { 'attr': { 'class': 'form-control' } }) }}
+                        {{ form_errors(form.username) }}
+                    </div>
+
+                    <div class="mb-3">
+                        {{ form_label(form.password, 'Mot de passe', { 'label_attr': { 'class': 'form-label' } }) }}
+                        {{ form_widget(form.password, { 'attr': { 'class': 'form-control' } }) }}
+                        {{ form_errors(form.password) }}
+                    </div>
+
+               
+                    {{ form_end(form) }}
+                </form>
+            </div>
+        </div>
+    </div>
 {% endblock %}
