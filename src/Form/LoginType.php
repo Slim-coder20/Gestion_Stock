@@ -31,7 +31,7 @@ class LoginType extends AbstractType
             ->add('submit', SubmitType::class, [
                 'label' => 'Se connecter',
                 'attr' => [
-                    'class' => 'btn btn-primary',
+                    'class' => 'btn btn-success',
                 ],
             ])
         ;
